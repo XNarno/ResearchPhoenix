@@ -23,11 +23,8 @@ VERT_HERBE = (39, 187, 34)
 BLANC = (255, 255, 255)
 BLEUCLAIR = (127, 191, 255)
 
-VITESSE_STICKMAN = 10 #Vitesse de pixel parcouru tout les images_par_seconde/20
-
-v = 5
-m = 1
-enSaut = False
+HAUTEUR_DE_SAUT_MAX = 3
+HAUTEUR_DE_SAUT_MIN = 1
 
 # Paramètres
 
@@ -39,10 +36,18 @@ niveauEau = dim_win[1]-dim_win[0]/10 #Niveau Y du jeu
 
 positionStickmanX, positionStickmanY = (dim_win[0]/2, niveauEau-60) #Position du personnage
 
+v = 5
+m = 1
+enSaut = False
+
 vitesseNuageX = []
 positionNuageX = []
 positionNuageY = []
 nombreDeNuage = 10
+
+hauteurDeSaut = 1
+
+vitesseStickman = 10 #Vitesse de pixel parcouru tout les images_par_seconde/20
 
 iconImg = pygame.image.load('phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
@@ -62,8 +67,8 @@ def actualisation(): #Fonction actualisant le personnage et sa position (peut ê
         fenetre.blit(nuageImg, (positionNuageX[i], positionNuageY[i]))
 
 def saut():
-    global v, m, enSaut, positionStickmanY
-    F =(1/2)*m*(v**2)
+    global v, m, enSaut, positionStickmanY, hauteurDeSaut
+    F =(1/2)*m*(v**2)*hauteurDeSaut
 
     positionStickmanY -= F
     v = v-1
@@ -124,12 +129,18 @@ while True:
             if positionStickmanX >= dim_win[0]:
                 positionStickmanX = -30
             else:
-                positionStickmanX += VITESSE_STICKMAN
+                positionStickmanX += vitesseStickman
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             if positionStickmanX <= -30:
                 positionStickmanX = dim_win[0]
             else:
-                positionStickmanX -= VITESSE_STICKMAN
+                positionStickmanX -= vitesseStickman
+        if pygame.key.get_pressed()[pygame.K_UP]:
+            if hauteurDeSaut < HAUTEUR_DE_SAUT_MAX:
+                hauteurDeSaut += 1
+        if pygame.key.get_pressed()[pygame.K_DOWN]:
+            if hauteurDeSaut > HAUTEUR_DE_SAUT_MIN:
+                hauteurDeSaut -= 1
         if enSaut == False:
             if pygame.key.get_pressed()[pygame.K_SPACE]:
                 enSaut = True
