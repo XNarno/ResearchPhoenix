@@ -37,6 +37,12 @@ def actualisation(): #Fonction actualisant le personnage et sa position (peut ê
     for i in range(len(config.coeursAfficher)):
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/20+i*40), 0+config.dim_win[1]/20))
 
+def verifMouvementStickman():
+    if config.positionStickmanX >= config.dim_win[0]:
+        config.positionStickmanX = -30
+    elif config.positionStickmanX <= -30:
+        config.positionStickmanX = config.dim_win[0]
+
 def saut(): #Fonction calculant les forces, masses et velocite pour sauter
     F =(1/2)*config.masse*(config.velocite**2)*config.hauteurDeSaut
 
@@ -53,18 +59,19 @@ def saut(): #Fonction calculant les forces, masses et velocite pour sauter
 
 def mouvementNuage(): #Fonction actualisant la position des nuages
     for i in range(len(config.positionNuageX)):
+        if config.positionNuageX[i] < -69:
+            config.positionNuageX[i] = config.dim_win[0]
+            config.positionNuageY[i] = random.randint(config.dim_win[1]/12, config.dim_win[1]/12*5)
+
+        elif config.positionNuageX[i] >= config.dim_win[0]:
+            config.positionNuageX[i] = -69
+            config.positionNuageY[i] = random.randint(config.dim_win[1]/12, config.dim_win[1]/12*5)
+
         if config.directionVent == 1:
-            if config.positionNuageX[i] >= config.dim_win[0]:
-                config.positionNuageX[i] = -69
-                config.positionNuageY[i] = random.randint(config.dim_win[1]/12, config.dim_win[1]/12*5)
-            else:
-                config.positionNuageX[i] += config.vitesseNuageX[i]*config.vitesseDuVent
-        if config.directionVent == -1:
-            if config.positionNuageX[i] < -69:
-                config.positionNuageX[i] = config.dim_win[0]
-                config.positionNuageY[i] = random.randint(config.dim_win[1]/12, config.dim_win[1]/12*5)
-            else:
-                config.positionNuageX[i] -= config.vitesseNuageX[i]*config.vitesseDuVent
+            config.positionNuageX[i] += config.vitesseNuageX[i]*config.vitesseDuVent
+
+        elif config.directionVent == -1:
+            config.positionNuageX[i] -= config.vitesseNuageX[i]*config.vitesseDuVent
 
 def perteDeVie(): #Permet de perdre de la vie et d'afficher les coeurs vides
     config.coeursAfficher[config.nombreDeCoeurs-1] = config.coeurVideImg

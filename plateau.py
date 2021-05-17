@@ -24,23 +24,20 @@ pygame.key.set_repeat(20)
 while base.verifFin() == 0:
     for evenement in pygame.event.get():
         config.gaucheOuDroite = 3
+        config.vitesseDuVent = 1
         if evenement.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            if config.positionStickmanX >= config.dim_win[0]:
-                config.positionStickmanX = -30
-            else:
-                config.positionStickmanX += config.vitesseStickman
+            #config.positionStickmanX += config.vitesseStickman #Mettre ici pour avancer le stickman
+            config.vitesseDuVent = 1.8 #Mettre ici pour paralax avec stickman fixe
             config.compteurDePas += 1
             config.gaucheOuDroite = 0
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            if config.positionStickmanX <= -30:
-                config.positionStickmanX = config.dim_win[0]
-            else:
-                config.positionStickmanX -= config.vitesseStickman
+            #config.positionStickmanX -= config.vitesseStickman #Mettre ici pour avancer le stickman
+            config.vitesseDuVent = -0.1 #Mettre ici pour paralax avec stickman fixe
             config.compteurDePas += 1
             config.gaucheOuDroite = 1
 
@@ -60,6 +57,7 @@ while base.verifFin() == 0:
 
     if config.enSaut:
         base.saut()
+    base.verifMouvementStickman()
     base.mouvementNuage()
     base.actualisation()
     pygame.display.flip()
