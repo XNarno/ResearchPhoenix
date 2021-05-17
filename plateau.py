@@ -21,7 +21,7 @@ base.initialisationJeu()
 
 pygame.key.set_repeat(20)
 
-while True:
+while base.verifFin() == 0:
     for evenement in pygame.event.get():
         config.gaucheOuDroite = 3
         if evenement.type == pygame.QUIT:

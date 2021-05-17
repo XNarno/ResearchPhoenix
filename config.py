@@ -34,24 +34,25 @@ velocite = 5
 masse = 1
 enSaut = False
 
-vitesseNuageX = []
-positionNuageX = []
-positionNuageY = []
-nombreDeNuage = 10
-directionVent = 1
+vitesseNuageX = [] #Liste de vitesse de chaque nuages
+positionNuageX = [] #Liste de position de tous les nuages en X
+positionNuageY = [] #Liste de position de tous les nuages en Y
+nombreDeNuage = 25
+directionVent = -1 #Soit -1 soit 1 pour gauche ou droite
+vitesseDuVent = 1 #Influe sur les nuages
 
-hauteurDeSaut = 1
+hauteurDeSaut = 1 #Hauteur de saut du personnage
 
 vitesseStickman = 10 #Vitesse de pixel parcouru tout les images_par_seconde/20
 
-coeursAfficher = []
-nombreDeCoeurs = 3
+coeursAfficher = [] #Liste des coeurs à afficher
+nombreDeCoeurs = 5 #Nombre de coeurs à l'ecran
 
-stickRunAnim = []
-stickRunAnimLeft = []
+stickRunAnim = [] #Liste de l'animation du perso à droite
+stickRunAnimLeft = [] #Liste de l'animation du perso à gauche
 
-compteurDePas = 0
-gaucheOuDroite = 0
+compteurDePas = 0 #Compteur de pas
+gaucheOuDroite = 0 #Direction du personnage
 
 iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
@@ -63,10 +64,10 @@ coeurImg = pygame.image.load('images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
 coeurVideImg = pygame.image.load('images/voidHeart.png')
 coeurVideImg = pygame.transform.scale(coeurVideImg, (32, 32))
-for i in range(0,9):
+for i in range(0,9): #Permet d'attribuer à la liste d'animation les images
     stickRunAnim.append(pygame.image.load('images/animations/stick%d.png' % i))
     stickRunAnim[i] = pygame.transform.scale(stickRunAnim[i], (82, 100))
     stickRunAnimLeft.append(pygame.transform.flip(stickRunAnim[i], True, False))
 
-if __name__ == "__main__":
+if __name__ == "__main__": #Signale si le module est execute seul
     print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
