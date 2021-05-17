@@ -12,7 +12,8 @@ def initialisationJeu():
     config.fenetre.fill(config.BLEUCLAIR)
     pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
     pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
-    config.fenetre.blit(config.stickmanImg, (config.positionStickmanX, config.positionStickmanY))
+   
+    config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
 
     for i in range(0,config.nombreDeCoeurs):
         config.coeursAfficher.append(config.coeurImg)
@@ -22,9 +23,17 @@ def actualisation(): #Fonction actualisant le personnage et sa position (peut ê
     config.fenetre.fill(config.BLEUCLAIR)
     pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
     pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
-    config.fenetre.blit(config.stickmanImg, (config.positionStickmanX, config.positionStickmanY))
+
+    if config.gaucheOuDroite == 0:
+        config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
+    elif config.gaucheOuDroite == 1:
+        config.fenetre.blit(config.stickRunAnimLeft[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
+    else:    
+        config.fenetre.blit(config.stickmanImg, (config.positionStickmanX, config.positionStickmanY)) #stickman debout
+
     for i in range(len(config.positionNuageX)):
         config.fenetre.blit(config.nuageImg, (config.positionNuageX[i], config.positionNuageY[i]))
+
     for i in range(len(config.coeursAfficher)):
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/20+i*40), 0+config.dim_win[1]/20))
 

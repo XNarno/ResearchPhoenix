@@ -28,7 +28,7 @@ images_par_seconde = FULL_FPS #Nombre rafraichissement de la fenetre par seconde
 
 niveauEau = dim_win[1]-dim_win[0]/10 #Niveau Y du jeu
 
-positionStickmanX, positionStickmanY = (dim_win[0]/2, niveauEau-60) #Position du personnage
+positionStickmanX, positionStickmanY = (dim_win[0]/2, niveauEau-100) #Position du personnage
 
 velocite = 5
 masse = 1
@@ -47,16 +47,26 @@ vitesseStickman = 10 #Vitesse de pixel parcouru tout les images_par_seconde/20
 coeursAfficher = []
 nombreDeCoeurs = 3
 
+stickRunAnim = []
+stickRunAnimLeft = []
+
+compteurDePas = 0
+gaucheOuDroite = 0
+
 iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
-stickmanImg = pygame.image.load('images/stickman.png') #Image du perso
-stickmanImg = pygame.transform.scale(stickmanImg, (30, 60)) #Remise de l'image en 30 par 60 pixel
+stickmanImg = pygame.image.load('images/stickStable.png') #Image du perso
+stickmanImg = pygame.transform.scale(stickmanImg, (82, 105)) #Remise de l'image en 30 par 60 pixel
 nuageImg = pygame.image.load('images/whitecloud.png')
 nuageImg = pygame.transform.scale(nuageImg, (69, 44))
 coeurImg = pygame.image.load('images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
 coeurVideImg = pygame.image.load('images/voidHeart.png')
 coeurVideImg = pygame.transform.scale(coeurVideImg, (32, 32))
+for i in range(0,9):
+    stickRunAnim.append(pygame.image.load('images/animations/stick%d.png' % i))
+    stickRunAnim[i] = pygame.transform.scale(stickRunAnim[i], (82, 100))
+    stickRunAnimLeft.append(pygame.transform.flip(stickRunAnim[i], True, False))
 
 if __name__ == "__main__":
     print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
