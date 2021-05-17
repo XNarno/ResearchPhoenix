@@ -47,15 +47,15 @@ vitesseStickman = 10 #Vitesse de pixel parcouru tout les images_par_seconde/20
 coeursAfficher = []
 nombreDeCoeurs = 3
 
-iconImg = pygame.image.load('phoenix.jpg') #Image de l'icone
+iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
-stickmanImg = pygame.image.load('stickman.png') #Image du perso
+stickmanImg = pygame.image.load('images/stickman.png') #Image du perso
 stickmanImg = pygame.transform.scale(stickmanImg, (30, 60)) #Remise de l'image en 30 par 60 pixel
-nuageImg = pygame.image.load('whitecloud.png')
+nuageImg = pygame.image.load('images/whitecloud.png')
 nuageImg = pygame.transform.scale(nuageImg, (69, 44))
-coeurImg = pygame.image.load('heart.png')
+coeurImg = pygame.image.load('images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
-coeurVideImg = pygame.image.load('voidHeart.png')
+coeurVideImg = pygame.image.load('images/voidHeart.png')
 coeurVideImg = pygame.transform.scale(coeurVideImg, (32, 32))
 
 if __name__ == "__main__":
