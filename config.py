@@ -1,5 +1,8 @@
 import pygame
 
+if __name__ == "__main__":
+    print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
+
 # Constantes
 HD = (1280, 720)
 FULLHD = (1920, 1080)
@@ -58,8 +61,8 @@ iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
 stickmanImg = pygame.image.load('images/stickStable.png') #Image du perso
 stickmanImg = pygame.transform.scale(stickmanImg, (82, 105)) #Remise de l'image en 30 par 60 pixel
-nuageImg = pygame.image.load('images/henricloud.png')
-nuageImg = pygame.transform.scale(nuageImg, (44, 69)) #Inverser les valeurs pour nuage normal (69, 44)
+nuageImg = pygame.image.load('images/whitecloud.png')
+nuageImg = pygame.transform.scale(nuageImg, (69, 44)) 
 coeurImg = pygame.image.load('images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
 coeurVideImg = pygame.image.load('images/voidHeart.png')
@@ -68,6 +71,3 @@ for i in range(0,9): #Permet d'attribuer à la liste d'animation les images
     stickRunAnim.append(pygame.image.load('images/animations/stick%d.png' % i))
     stickRunAnim[i] = pygame.transform.scale(stickRunAnim[i], (82, 100))
     stickRunAnimLeft.append(pygame.transform.flip(stickRunAnim[i], True, False))
-
-if __name__ == "__main__": #Signale si le module est execute seul
-    print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")

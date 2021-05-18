@@ -1,5 +1,8 @@
 import random, pygame, config
 
+if __name__ == "__main__":
+    print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
+
 def initialisationJeu(): #Initialise le jeu avec tout ce qu'il faut pour commencer
     for i in range(0, config.nombreDeNuage):
         config.vitesseNuageX.append(2)
@@ -84,6 +87,4 @@ def verifFin(): #Permet de verifier si on a encore de la vie
         return -1
     else:
         return 0
-
-if __name__ == "__main__":
-    print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
+        
