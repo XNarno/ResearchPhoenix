@@ -30,14 +30,14 @@ while base.verifFin() == 0:
             sys.exit()
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            #config.positionStickmanX += config.vitesseStickman #Mettre ici pour avancer le stickman
-            config.vitesseDuVent = 1.8 #Mettre ici pour paralax avec stickman fixe
+            config.positionStickmanX += config.vitesseStickman #Mettre ici pour avancer le stickman
+            #config.vitesseDuVent = 1.8 #Mettre ici pour paralax avec stickman fixe
             config.compteurDePas += 1
             config.gaucheOuDroite = 0
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            #config.positionStickmanX -= config.vitesseStickman #Mettre ici pour avancer le stickman
-            config.vitesseDuVent = -0.1 #Mettre ici pour paralax avec stickman fixe
+            config.positionStickmanX -= config.vitesseStickman #Mettre ici pour avancer le stickman
+            #config.vitesseDuVent = -0.1 #Mettre ici pour paralax avec stickman fixe
             config.compteurDePas += 1
             config.gaucheOuDroite = 1
 
@@ -59,6 +59,6 @@ while base.verifFin() == 0:
         base.saut()
     base.verifMouvementStickman()
     base.mouvementNuage()
-    base.actualisation()
+    base.dessinsPlateau()
     pygame.display.flip()
     horloge.tick(config.images_par_seconde)

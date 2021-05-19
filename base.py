@@ -22,11 +22,7 @@ def initialisationJeu(): #Initialise le jeu avec tout ce qu'il faut pour commenc
         config.coeursAfficher.append(config.coeurImg)
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/12-i*40), 0+config.dim_win[1]/12))
 
-def actualisation(): #Fonction actualisant le personnage et sa position (peut être opti par la suite)
-    config.fenetre.fill(config.BLEUCLAIR)
-    pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
-    pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
-
+def actualisationPersonnage(): #Fonction actualisant le personnage et sa position (peut être opti par la suite)
     if config.gaucheOuDroite == 0:
         config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
     elif config.gaucheOuDroite == 1:
@@ -34,13 +30,20 @@ def actualisation(): #Fonction actualisant le personnage et sa position (peut ê
     else:    
         config.fenetre.blit(config.stickmanImg, (config.positionStickmanX, config.positionStickmanY)) #stickman debout
 
+def dessinsPlateau(): #Dessine le plateau
+    config.fenetre.fill(config.BLEUCLAIR)
+    actualisationPersonnage()
+    
+    pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
+    pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
+
     for i in range(len(config.positionNuageX)):
         config.fenetre.blit(config.nuageImg, (config.positionNuageX[i], config.positionNuageY[i]))
 
     for i in range(len(config.coeursAfficher)):
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/20+i*40), 0+config.dim_win[1]/20))
 
-def verifMouvementStickman():
+def verifMouvementStickman(): #Vérifie si le stickman sort de l'écran par la gauche ou la droite
     if config.positionStickmanX >= config.dim_win[0]:
         config.positionStickmanX = -30
     elif config.positionStickmanX <= -30:
