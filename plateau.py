@@ -2,10 +2,11 @@ import math
 import pygame
 import sys
 import random
-import time 
+import time
 import config
 import base
 import gen
+import phoenix
 
 # Initialisation
 
@@ -23,6 +24,7 @@ base.initialisationJeu()
 pygame.key.set_repeat(20)
 
 while base.verifFin() == 0:
+    temps_maintenant = pygame.time.get_ticks()
     for evenement in pygame.event.get():
         config.gaucheOuDroite = 3
         config.vitesseDuVent = 1
@@ -62,5 +64,6 @@ while base.verifFin() == 0:
     base.verifMouvementStickman()
     base.mouvementNuage()
     base.dessinsPlateau()
+    phoenix.affiche_phoenix(temps_maintenant/120)
     pygame.display.flip()
     horloge.tick(config.images_par_seconde)

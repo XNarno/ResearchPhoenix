@@ -45,6 +45,9 @@ velocite = 5
 masse = 1
 enSaut = False
 
+posXPhoenix = positionStickmanX - 20
+posYPhoenix = positionStickmanY - 20
+
 vitesseNuageX = [] #Liste de vitesse de chaque nuages
 positionNuageX = [] #Liste de position de tous les nuages en X
 positionNuageY = [] #Liste de position de tous les nuages en Y
@@ -57,18 +60,29 @@ nombreDeCoeurs = 5 #Nombre de coeurs à l'ecran
 
 stickRunAnim = [] #Liste de l'animation du perso à droite
 stickRunAnimLeft = [] #Liste de l'animation du perso à gauche
+phoenixAnim = []
 
 iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
 stickmanImg = pygame.image.load('images/stickStable.png') #Image du perso
 stickmanImg = pygame.transform.scale(stickmanImg, (LARGEUR_PERSO, LONGUEUR_PERSO)) #Remise de l'image en 30 par 60 pixel
 nuageImg = pygame.image.load('images/whitecloud.png')
-nuageImg = pygame.transform.scale(nuageImg, (69, 44)) 
+nuageImg = pygame.transform.scale(nuageImg, (69, 44))
 nuageImg.set_alpha(150) #Met la transparence des nuages
 coeurImg = pygame.image.load('images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
 coeurVideImg = pygame.image.load('images/voidHeart.png')
 coeurVideImg = pygame.transform.scale(coeurVideImg, (32, 32))
+for i in range(0,6):
+    if i >= 3:
+        j = i - 2
+        phoenixAnim.append(pygame.image.load('images/animations/phoenixtest%d.png' % j))
+        phoenixAnim[i] = pygame.transform.scale(phoenixAnim[i], (32, 32))
+        phoenixAnim[i] = pygame.transform.flip(phoenixAnim[i], True, False)
+    else:
+        j = i + 1
+        phoenixAnim.append(pygame.image.load('images/animations/phoenixtest%d.png' % j))
+        phoenixAnim[i] = pygame.transform.scale(phoenixAnim[i], (32, 32))
 for i in range(0,9): #Permet d'attribuer à la liste d'animation les images
     stickRunAnim.append(pygame.image.load('images/animations/stick%d.png' % i))
     stickRunAnim[i] = pygame.transform.scale(stickRunAnim[i], (LARGEUR_PERSO, LONGUEUR_PERSO))
