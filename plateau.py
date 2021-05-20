@@ -5,6 +5,7 @@ import random
 import time 
 import config
 import base
+import gen
 
 # Initialisation
 
@@ -36,7 +37,8 @@ while base.verifFin() == 0:
             config.gaucheOuDroite = 0
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            config.positionStickmanX -= config.vitesseStickman #Mettre ici pour avancer le stickman
+            if gen.numeroDeSalle > -1:
+                config.positionStickmanX -= config.vitesseStickman #Mettre ici pour avancer le stickman
             #config.vitesseDuVent = -0.1 #Mettre ici pour paralax avec stickman fixe
             config.compteurDePas += 1
             config.gaucheOuDroite = 1

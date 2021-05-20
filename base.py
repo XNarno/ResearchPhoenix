@@ -1,4 +1,4 @@
-import random, pygame, config
+import random, pygame, config, gen
 
 if __name__ == "__main__":
     print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
@@ -32,6 +32,9 @@ def actualisationPersonnage(): #Fonction actualisant le personnage et sa positio
 
 def dessinsPlateau(): #Dessine le plateau
     config.fenetre.fill(config.BLEUCLAIR)
+
+    gen.dessinsGenere() #Generation
+
     actualisationPersonnage()
     
     pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
@@ -44,16 +47,22 @@ def dessinsPlateau(): #Dessine le plateau
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/20+i*40), 0+config.dim_win[1]/20))
 
 def verifMouvementStickman(): #Vérifie si le stickman sort de l'écran par la gauche ou la droite
-    if config.positionStickmanX >= config.dim_win[0]:
-        config.positionStickmanX = -30
-    elif config.positionStickmanX <= -30:
+    if config.positionStickmanX > config.dim_win[0]:
+        config.positionStickmanX = -82
+        gen.ancienNumeroDeSalle = gen.numeroDeSalle
+        gen.numeroDeSalle += 1
+        gen.generateurDePiece()
+    elif config.positionStickmanX < -82:
         config.positionStickmanX = config.dim_win[0]
+        gen.ancienNumeroDeSalle = gen.numeroDeSalle
+        gen.numeroDeSalle -= 1
+        gen.generateurDePiece()
 
 def saut(): #Fonction calculant les forces, masses et velocite pour sauter
     F =(1/2)*config.masse*(config.velocite**2)*config.hauteurDeSaut
 
     config.positionStickmanY -= F
-    config.velocite = config.velocite-1
+    config.velocite -= 1
 
     if config.velocite<0:
         config.masse -= 0.851111112
@@ -85,9 +94,9 @@ def perteDeVie(): #Permet de perdre de la vie et d'afficher les coeurs vides
         config.nombreDeCoeurs -= 1
 
 def verifFin(): #Permet de verifier si on a encore de la vie
-    if config.nombreDeCoeurs <= 0:
+    if config.nombreDeCoeurs > 0:
+        return 0
+    else:
         print("C'est la fin")
         return -1
-    else:
-        return 0
         
