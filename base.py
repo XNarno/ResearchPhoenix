@@ -15,7 +15,7 @@ def initialisationJeu(): #Initialise le jeu avec tout ce qu'il faut pour commenc
     config.fenetre.fill(config.BLEUCLAIR)
     pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
     pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
-   
+
     config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
 
     for i in range(0,config.nombreDeCoeurs):
@@ -27,7 +27,7 @@ def actualisationPersonnage(): #Fonction actualisant le personnage et sa positio
         config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
     elif config.gaucheOuDroite == 1:
         config.fenetre.blit(config.stickRunAnimLeft[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
-    else:    
+    else:
         config.fenetre.blit(config.stickmanImg, (config.positionStickmanX, config.positionStickmanY)) #stickman debout
 
 def dessinsPlateau(): #Dessine le plateau
@@ -36,7 +36,7 @@ def dessinsPlateau(): #Dessine le plateau
     gen.dessinsGenere() #Generation
 
     actualisationPersonnage()
-    
+
     pygame.draw.rect(config.fenetre, config.BRUN_FONCE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/10), 0)
     pygame.draw.rect(config.fenetre, config.VERT_HERBE, (0, config.dim_win[1]-config.dim_win[0]/10, config.dim_win[0], config.dim_win[0]/30), 0)
 
@@ -49,11 +49,15 @@ def dessinsPlateau(): #Dessine le plateau
 def verifMouvementStickman(): #Vérifie si le stickman sort de l'écran par la gauche ou la droite
     if config.positionStickmanX > config.dim_win[0]:
         config.positionStickmanX = -82
+        config.posXPhoenix = config.positionStickmanX - 20
+        config.posYPhoenix = config.positionStickmanY - 20
         gen.ancienNumeroDeSalle = gen.numeroDeSalle
         gen.numeroDeSalle += 1
         gen.generateurDePiece()
     elif config.positionStickmanX < -82:
         config.positionStickmanX = config.dim_win[0]
+        config.posXPhoenix = config.positionStickmanX - 20
+        config.posYPhoenix = config.positionStickmanY - 20
         gen.ancienNumeroDeSalle = gen.numeroDeSalle
         gen.numeroDeSalle -= 1
         gen.generateurDePiece()
@@ -66,7 +70,7 @@ def saut(): #Fonction calculant les forces, masses et velocite pour sauter
 
     if config.velocite<0:
         config.masse -= 0.851111112
-    
+
     if config.velocite == -5:
         config.enSaut = False
         config.velocite = 5
@@ -99,4 +103,3 @@ def verifFin(): #Permet de verifier si on a encore de la vie
     else:
         print("C'est la fin")
         return -1
-        
