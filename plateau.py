@@ -16,8 +16,6 @@ random.seed(time.time())
 
 horloge = pygame.time.Clock()
 
-
-
 pygame.key.set_repeat(20)
 
 while base.verifFin() == 0:
@@ -32,7 +30,7 @@ while base.verifFin() == 0:
                     if pos[1] < config.dim_win[1]/2 + config.dim_win[1]/24 and pos[1] > config.dim_win[1]/2 - config.dim_win[1]/24:
                         home.menuActive = False
     base.actuObligatoire()
-    while home.menuActive == False:
+    while home.menuActive == False and base.verifFin() == 0:
         if config.jeuInitialise == False:
             base.initialisationJeu()
         for evenement in pygame.event.get():
