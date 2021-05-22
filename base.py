@@ -1,4 +1,4 @@
-import random, pygame, config, gen
+import random, pygame, config
 
 if __name__ == "__main__":
     print("\nCeci est un module, veuillez ne pas l'utiliser seul\n")
@@ -22,6 +22,8 @@ def initialisationJeu(): #Initialise le jeu avec tout ce qu'il faut pour commenc
         config.coeursAfficher.append(config.coeurImg)
         config.fenetre.blit(config.coeursAfficher[i], (config.dim_win[0]-(config.dim_win[0]/12-i*40), 0+config.dim_win[1]/12))
 
+    config.jeuInitialise = True
+
 def actualisationPersonnage(): #Fonction actualisant le personnage et sa position (peut être opti par la suite)
     if config.gaucheOuDroite == 0:
         config.fenetre.blit(config.stickRunAnim[config.compteurDePas], (config.positionStickmanX, config.positionStickmanY))
@@ -33,7 +35,6 @@ def actualisationPersonnage(): #Fonction actualisant le personnage et sa positio
 def dessinsPlateau(): #Dessine le plateau
     config.fenetre.fill(config.BLEUCLAIR)
 
-    gen.dessinsGenere() #Generation
 
     actualisationPersonnage()
     
@@ -49,14 +50,12 @@ def dessinsPlateau(): #Dessine le plateau
 def verifMouvementStickman(): #Vérifie si le stickman sort de l'écran par la gauche ou la droite
     if config.positionStickmanX > config.dim_win[0]:
         config.positionStickmanX = -82
-        gen.ancienNumeroDeSalle = gen.numeroDeSalle
-        gen.numeroDeSalle += 1
-        gen.generateurDePiece()
+        config.ancienNumeroDeSalle = config.numeroDeSalle
+        config.numeroDeSalle += 1
     elif config.positionStickmanX < -82:
         config.positionStickmanX = config.dim_win[0]
-        gen.ancienNumeroDeSalle = gen.numeroDeSalle
-        gen.numeroDeSalle -= 1
-        gen.generateurDePiece()
+        config.ancienNumeroDeSalle = config.numeroDeSalle
+        config.numeroDeSalle -= 1
 
 def saut(): #Fonction calculant les forces, masses et velocite pour sauter
     F =(1/2)*config.masse*(config.velocite**2)*config.hauteurDeSaut
@@ -99,4 +98,8 @@ def verifFin(): #Permet de verifier si on a encore de la vie
     else:
         print("C'est la fin")
         return -1
+
+def actuObligatoire():
+    pygame.display.flip()
+    pygame.time.Clock().tick(config.images_par_seconde)
         

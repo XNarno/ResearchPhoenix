@@ -14,6 +14,7 @@ LOW_FPS = 30
 FULL_FPS = 60
 
 NOIR = (0, 0, 0)
+ROUGE = (237, 27, 27)
 BRUN_FONCE = (101, 51, 30)
 VERT_HERBE = (39, 187, 34)
 BLANC = (255, 255, 255)
@@ -57,6 +58,16 @@ nombreDeCoeurs = 5 #Nombre de coeurs à l'ecran
 
 stickRunAnim = [] #Liste de l'animation du perso à droite
 stickRunAnimLeft = [] #Liste de l'animation du perso à gauche
+
+numeroDeSalle = 0
+ancienNumeroDeSalle = numeroDeSalle
+
+jeuInitialise = False
+
+pygame.font.init()
+myfont = pygame.font.Font('publicSecret.otf', 60)
+textMenu = myfont.render("Jouer", False, NOIR)
+text_rect = textMenu.get_rect(center=(dim_win[0]/2, dim_win[1]/2))
 
 iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
