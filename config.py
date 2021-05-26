@@ -65,22 +65,22 @@ ancienNumeroDeSalle = numeroDeSalle
 jeuInitialise = False
 
 pygame.font.init()
-myfont = pygame.font.Font('publicSecret.otf', 60)
+myfont = pygame.font.Font('data/fonts/publicSecret.otf', 60)
 textMenu = myfont.render("Jouer", False, NOIR)
 text_rect = textMenu.get_rect(center=(dim_win[0]/2, dim_win[1]/2))
 
-iconImg = pygame.image.load('images/phoenix.jpg') #Image de l'icone
+iconImg = pygame.image.load('data/images/phoenix.jpg') #Image de l'icone
 iconImg = pygame.transform.scale(iconImg, (32, 32)) #Remise de l'image en 32x32 pixel
-stickmanImg = pygame.image.load('images/stickStable.png') #Image du perso
+stickmanImg = pygame.image.load('data/images/stickStable.png') #Image du perso
 stickmanImg = pygame.transform.scale(stickmanImg, (LARGEUR_PERSO, LONGUEUR_PERSO)) #Remise de l'image en 30 par 60 pixel
-nuageImg = pygame.image.load('images/whitecloud.png')
+nuageImg = pygame.image.load('data/images/whitecloud.png')
 nuageImg = pygame.transform.scale(nuageImg, (69, 44)) 
 nuageImg.set_alpha(150) #Met la transparence des nuages
-coeurImg = pygame.image.load('images/heart.png')
+coeurImg = pygame.image.load('data/images/heart.png')
 coeurImg = pygame.transform.scale(coeurImg, (32, 32))
-coeurVideImg = pygame.image.load('images/voidHeart.png')
+coeurVideImg = pygame.image.load('data/images/voidHeart.png')
 coeurVideImg = pygame.transform.scale(coeurVideImg, (32, 32))
 for i in range(0,9): #Permet d'attribuer à la liste d'animation les images
-    stickRunAnim.append(pygame.image.load('images/animations/stick%d.png' % i))
+    stickRunAnim.append(pygame.image.load('data/images/animations/stick%d.png' % i))
     stickRunAnim[i] = pygame.transform.scale(stickRunAnim[i], (LARGEUR_PERSO, LONGUEUR_PERSO))
     stickRunAnimLeft.append(pygame.transform.flip(stickRunAnim[i], True, False))
